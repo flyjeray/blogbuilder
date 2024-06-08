@@ -1,0 +1,18 @@
+@import '../../colors.module.scss';
+
+.button {
+  width: 100%;
+
+  color: black;
+  background-color: $componentBackground;
+  transition: all 0.15s;
+  border: none;
+  border-radius: 12px;
+  font-size: 36px;
+  padding: 8px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $accent;
+  }
+}

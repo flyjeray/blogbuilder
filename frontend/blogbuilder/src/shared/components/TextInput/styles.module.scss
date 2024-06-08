@@ -1,0 +1,18 @@
+@import '../../colors.module.scss';
+
+$padding: 8px;
+
+.input {
+  padding: $padding;
+  background-color: $componentBackground;
+  width: calc(100% - ($padding * 2));
+  border-radius: 12px;
+  font-size: 36px;
+  caret-color: $accent;
+  border: none;
+
+  &:focus {
+    outline: 1px solid $accent;
+    outline-offset: 4px;
+  }
+}

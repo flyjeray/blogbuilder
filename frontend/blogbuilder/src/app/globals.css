@@ -1,4 +1,8 @@
 html {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 36px;
   background-color: black;
 }
 
