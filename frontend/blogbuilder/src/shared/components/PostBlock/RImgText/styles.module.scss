@@ -1,0 +1,24 @@
+@import '../../../breakpoints.module.scss';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 36px;
+  
+  .image {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  .text {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: $mobileMaxWidth) {
+    flex-direction: column;
+  }
+}
