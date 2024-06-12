@@ -1,11 +1,12 @@
 @import '../../colors.module.scss';
 
-$padding: 8px;
+$paddingLarge: 8px;
+$paddingRegular: 4px;
 
-.input {
-  padding: $padding;
+.input_large {
+  padding: $paddingLarge;
   background-color: $componentBackground;
-  width: calc(100% - ($padding * 2));
+  width: calc(100% - ($paddingLarge * 2));
   border-radius: 12px;
   font-size: 36px;
   caret-color: $accent;
@@ -15,4 +16,13 @@ $padding: 8px;
     outline: 1px solid $accent;
     outline-offset: 4px;
   }
+}
+
+.input_regular {
+  @extend .input_large;
+
+  font-size: 16px;
+  border-radius: 4px;
+  padding: $paddingRegular;
+  width: calc(100% - ($paddingRegular * 2));
 }

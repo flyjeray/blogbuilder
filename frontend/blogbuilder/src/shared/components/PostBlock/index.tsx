@@ -5,17 +5,17 @@ import { PostBlockLImgText } from "./LImgText";
 import { PostBlockRImgText } from "./RImgText";
 
 export type PostBlockRendererProps = {
-  data: PostBlockContent;
+  block: PostBlockContent;
 }
 
-const PostBlockRenderer = ({ data }: PostBlockRendererProps) => {
-  switch (data.type) {
+const PostBlockRenderer = ({ block }: PostBlockRendererProps) => {
+  switch (block.type) {
     case 'text':
-      return <PostBlockText data={data} />
+      return <PostBlockText block={block} />
     case 'r_img_text':
-      return <PostBlockRImgText data={data} />
+      return <PostBlockRImgText block={block} />
     case 'l_img_text':
-      return <PostBlockLImgText data={data} />
+      return <PostBlockLImgText block={block} />
   }
 }
 

@@ -1,9 +1,17 @@
 type PostBlockType = 'text' | 'r_img_text' | 'l_img_text';
 
+export type PostBlockFieldType = 'text' | 'img';
+
+export type PostBlockFieldContent = {
+  id: string;
+  type: PostBlockFieldType;
+  value: string;
+}
+
 export type PostBlockContent = {
   id: string;
   type: PostBlockType;
-  data: Record<string, string>;
+  fields: PostBlockFieldContent[];
 }
 
 export type PostContent = {

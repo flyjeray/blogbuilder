@@ -30,14 +30,21 @@ const AdminLoginPage = () => {
         name="username"
         placeholder="Username"
         onChange={handleInputChange}
+        variant="large"
       />
       <TextInput
         name="password"
         placeholder="Password"
         type="password"
         onChange={handleInputChange}
+        variant="large"
       />
-      <Button onClick={handleSubmit}>Login</Button>
+      <Button
+        variant="large"
+        onClick={handleSubmit}
+      >
+        Login
+      </Button>
     </main>
   )
 }

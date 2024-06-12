@@ -21,7 +21,7 @@ const BlogPostPage = ({ params }: Props) => {
       <h1>{MockPost.title}</h1>
       <div className={styles.blocks}>
         {MockPost.blocks.map(block => (
-          <PostBlockRenderer key={block.id} data={block} />
+          <PostBlockRenderer key={block.id} block={block} />
         ))}
       </div>
     </main>

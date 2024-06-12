@@ -7,27 +7,47 @@ const RandomPhoto = (x: number, y: number) => `https://picsum.photos/${x}/${y}`
 const MockTextBlock = (id: string): PostBlockContent => ({
   id,
   type: 'text',
-  data: {
-    content: LoremIpsum,
-  }
+  fields: [
+    {
+      id: 't1',
+      type: 'text',
+      value: LoremIpsum
+    }
+  ]
 })
 
 const MockRImgTextBlock = (id: string): PostBlockContent => ({
   id,
   type: 'r_img_text',
-  data: {
-    content: LoremIpsum,
-    image: RandomPhoto(500, 300)
-  }
+  fields: [
+    {
+      id: 't1',
+      type: 'text',
+      value: LoremIpsum,
+    },
+    {
+      id: 'i1',
+      type: 'img',
+      value: RandomPhoto(500, 300)
+    }
+  ]
 })
 
 const MockLImgTextBlock = (id: string): PostBlockContent => ({
   id,
   type: 'l_img_text',
-  data: {
-    content: LoremIpsum,
-    image: RandomPhoto(600, 200)
-  }
+  fields: [
+    {
+      id: 't1',
+      type: 'text',
+      value: LoremIpsum
+    },
+    {
+      id: 'i1',
+      type: 'img',
+      value: RandomPhoto(600, 200)
+    }
+  ]
 })
 
 export const MockPost: PostContent = {

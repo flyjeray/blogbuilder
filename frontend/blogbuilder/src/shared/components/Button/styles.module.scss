@@ -1,6 +1,6 @@
 @import '../../colors.module.scss';
 
-.button {
+.button_large {
   width: 100%;
 
   color: black;
@@ -15,4 +15,12 @@
     cursor: pointer;
     background-color: $accent;
   }
+}
+
+.button_regular {
+  @extend .button_large;
+
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 4px;
 }
