@@ -1,4 +1,4 @@
-import { PostBlockContent } from "@/shared/models/Post"
+import { PostBlockContent, PostBlockFieldContent } from "@/shared/models/Post"
 import PostBlockRenderer from "../PostBlock";
 import styles from './styles.module.scss';
 import EditIcon from '@/assets/icons/edit.svg';
@@ -18,37 +18,60 @@ const EditButton = (props: EditButtonProps) => {
 
 type BlockEditDropdownProps = {
   block: PostBlockContent;
-  onSave: () => void;
+  onSave: (data: PostBlockContent) => void;
 }
 
 const BlockEditDropdown = ({ block, onSave }: BlockEditDropdownProps) => {
+  const [data, setData] = useState(block);
+
+  const handleChange = (fields: PostBlockFieldContent[]) => {
+    setData(prev => ({
+      ...prev,
+      fields
+    }))
+  }
+
   return (
     <div className={styles.edit_dropdown}>
-      <PostBlockEditFields block={block} />
-      <Button onClick={onSave}>Save</Button>
+      <PostBlockEditFields
+        block={data}
+        onChange={handleChange}
+      />
+      <Button onClick={() => onSave(data)}>Save</Button>
     </div>
   )
 }
 
 type Props = {
   data: PostBlockContent;
+  onSave: (data: PostBlockContent) => void;
 }
 
-const EditablePostBlock = ({ data }: Props) => {
+const EditablePostBlock = ({ data, onSave }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
   }
 
-  const handleSave = () => {
+  const handleSave = (data: PostBlockContent) => {
+    onSave(data);
     setOpen(false);
   }
 
   return (
     <div className={styles.container}>
-      {!open && <EditButton onClick={handleOpen} />}
-      {open && <BlockEditDropdown onSave={handleSave} block={data} />}
+      {!open && (
+        <EditButton
+          onClick={handleOpen}
+        />
+      )}
+      {open && (
+        <BlockEditDropdown
+          onSave={handleSave}
+          block={data}
+        />
+      )}
       <PostBlockRenderer block={data} />
     </div>
   )

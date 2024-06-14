@@ -21,15 +21,28 @@ const AdminEditPostPage = ({ params }: Props) => {
     setTitle(e.currentTarget.value);
   }
 
+  const handleSave = (block: PostBlockContent) => {
+    const copy = [...blocks];
+    const i = copy.findIndex(b => b.id == block.id);
+    if (i !== -1) {
+      copy[i] = block;
+    }
+    setBlocks(copy);
+  }
+
   return (
     <main className={styles.container}>
       <TextInput
-        defaultValue={MockPost.title}
         onChange={handleChangeTitle}
         placeholder="Post Title"
+        value={title}
       />
       {blocks.map(block => (
-        <EditablePostBlock key={block.id} data={block} />
+        <EditablePostBlock
+          key={block.id}
+          data={block}
+          onSave={handleSave}
+        />
       ))}
     </main>
   )
