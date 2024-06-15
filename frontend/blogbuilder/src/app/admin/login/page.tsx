@@ -1,8 +1,8 @@
 'use client';
 
-import TextInput from '@/shared/components/TextInput';
+import TextInput from '@/shared/components/atoms/TextInput';
 import styles from './styles.module.scss';
-import Button from '@/shared/components/Button';
+import Button from '@/shared/components/atoms/Button';
 import { ChangeEvent, useState } from 'react';
 
 type FormData = {

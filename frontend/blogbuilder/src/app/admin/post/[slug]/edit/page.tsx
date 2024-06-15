@@ -1,11 +1,11 @@
 'use client'
 
-import TextInput from '@/shared/components/TextInput';
+import TextInput from '@/shared/components/atoms/TextInput';
 import styles from './styles.module.scss';
 import { MockPost } from '@/mocks/MockPost';
 import { FormEvent, useState } from 'react';
 import { PostBlockContent } from '@/shared/models/Post';
-import EditablePostBlock from '@/shared/components/EditablePostBlock';
+import EditablePostBlock from '@/shared/components/organisms/EditablePostBlock';
 
 type Props = {
   params: {

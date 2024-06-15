@@ -1,7 +1,7 @@
 import { PostBlockContent, PostBlockFieldContent } from "@/shared/models/Post";
-import TextInput from "../../TextInput";
+import TextInput from "@/shared/components/atoms/TextInput";
 import { useMemo, useState } from "react";
-import TextArea from "../../TextArea";
+import TextArea from "@/shared/components/atoms/TextArea";
 
 type SingleFieldProps = {
   field: PostBlockFieldContent;

@@ -1,10 +1,10 @@
 import { PostBlockContent, PostBlockFieldContent } from "@/shared/models/Post"
-import PostBlockRenderer from "../PostBlock";
+import PostBlockRenderer from "@/shared/components/molecules/PostBlock";
 import styles from './styles.module.scss';
 import EditIcon from '@/assets/icons/edit.svg';
 import { HTMLProps, useState } from "react";
 import PostBlockEditFields from "./PostBlockEditFields";
-import Button from "../Button";
+import Button from "@/shared/components/atoms/Button";
 
 type EditButtonProps = HTMLProps<HTMLButtonElement>;
 
