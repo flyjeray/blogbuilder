@@ -16,6 +16,7 @@
   .text {
     font-size: 18px;
     margin: 0;
+    white-space: pre-wrap;
   }
 
   @media screen and (max-width: $mobileMaxWidth) {

@@ -1,6 +1,7 @@
 import { PostBlockContent, PostBlockFieldContent } from "@/shared/models/Post";
 import TextInput from "../../TextInput";
 import { useMemo, useState } from "react";
+import TextArea from "../../TextArea";
 
 type SingleFieldProps = {
   field: PostBlockFieldContent;
@@ -11,10 +12,11 @@ const SingleFieldEditField = ({ field, onChange }: SingleFieldProps) => {
   switch (field.type) {
     case 'text':
       return (
-        <TextInput
+        <TextArea
           placeholder="Text"
           defaultValue={field.value}
           onChange={e => onChange(e.currentTarget.value)}
+          rows={5}
         />
       );
     case 'img':

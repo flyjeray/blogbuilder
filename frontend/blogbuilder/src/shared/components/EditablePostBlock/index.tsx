@@ -19,9 +19,10 @@ const EditButton = (props: EditButtonProps) => {
 type BlockEditDropdownProps = {
   block: PostBlockContent;
   onSave: (data: PostBlockContent) => void;
+  onCancel: () => void;
 }
 
-const BlockEditDropdown = ({ block, onSave }: BlockEditDropdownProps) => {
+const BlockEditDropdown = ({ block, onSave, onCancel }: BlockEditDropdownProps) => {
   const [data, setData] = useState(block);
 
   const handleChange = (fields: PostBlockFieldContent[]) => {
@@ -38,6 +39,7 @@ const BlockEditDropdown = ({ block, onSave }: BlockEditDropdownProps) => {
         onChange={handleChange}
       />
       <Button onClick={() => onSave(data)}>Save</Button>
+      <Button onClick={onCancel}>Cancel</Button>
     </div>
   )
 }
@@ -52,6 +54,10 @@ const EditablePostBlock = ({ data, onSave }: Props) => {
 
   const handleOpen = () => {
     setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
   }
 
   const handleSave = (data: PostBlockContent) => {
@@ -69,6 +75,7 @@ const EditablePostBlock = ({ data, onSave }: Props) => {
       {open && (
         <BlockEditDropdown
           onSave={handleSave}
+          onCancel={handleClose}
           block={data}
         />
       )}

@@ -11,7 +11,7 @@ export const PostBlockLImgText = ({ block }: PostBlockRendererProps) => {
 
   return (
     <div className={styles.container}>
-      <p>{textFieldData.value}</p>
+      <p className={styles.text}>{textFieldData.value}</p>
       <img src={imgFieldData.value} alt="Image" className={styles.image} />
     </div>
   )
