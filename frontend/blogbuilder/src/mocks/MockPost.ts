@@ -50,14 +50,41 @@ const MockLImgTextBlock = (id: string): PostBlockContent => ({
   ]
 })
 
+const MockSecondaryTitleBlock = (id: string): PostBlockContent => ({
+  id,
+  type: 'secondary_title',
+  fields: [
+    {
+      id: 't1',
+      type: 'text',
+      value: 'Secondary Title'
+    }
+  ]
+})
+
+const MockImageBlock = (id: string): PostBlockContent => ({
+  id,
+  type: 'img',
+  fields: [
+    {
+      id: 'i1',
+      type: 'img',
+      value: RandomPhoto(800, 800)
+    }
+  ]
+})
+
 export const MockPost: PostContent = {
   title: 'Mock Post',
   blocks: [
     MockTextBlock('block1'),
-    MockLImgTextBlock('block2'),
+    MockSecondaryTitleBlock('sectitle1'),
+    MockImageBlock('img1'),
     MockTextBlock('block3'),
     MockRImgTextBlock('block4'),
-    MockTextBlock('block5'),
-    MockTextBlock('block6')
+    MockSecondaryTitleBlock('sectitle2'),
+    MockImageBlock('img2'),
+    MockTextBlock('block6'),
+    MockLImgTextBlock('block7')
   ]
 }

@@ -1,4 +1,4 @@
-type PostBlockType = 'text' | 'r_img_text' | 'l_img_text';
+type PostBlockType = 'text' | 'r_img_text' | 'l_img_text' | 'secondary_title' | 'img';
 
 export type PostBlockFieldType = 'text' | 'img';
 
