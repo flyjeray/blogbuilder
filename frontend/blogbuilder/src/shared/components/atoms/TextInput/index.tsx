@@ -7,7 +7,12 @@ type Props = {
 
 const TextInput = (props: Props) => {
   return (
-    <div style={{ position: 'relative' }}>
+    <div className={styles.textinput_container}>
+      {props.title && (
+        <p className={styles.title}>
+          {props.title}
+        </p>
+      )}
       <input className={styles[`input_${props.variant || 'regular'}`]} {...props} />
     </div>
   )

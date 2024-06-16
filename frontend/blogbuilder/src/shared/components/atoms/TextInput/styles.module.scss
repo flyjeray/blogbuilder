@@ -1,28 +1,40 @@
-@import '@/shared/colors.module.scss';
+@import '@/shared/constants/colors.module.scss';
 
 $paddingLarge: 8px;
 $paddingRegular: 4px;
 
-.input_large {
-  padding: $paddingLarge;
-  background-color: $componentBackground;
-  width: calc(100% - ($paddingLarge * 2));
-  border-radius: 12px;
-  font-size: 36px;
-  caret-color: $accent;
-  border: none;
+.textinput_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
-  &:focus {
-    outline: 1px solid $accent;
-    outline-offset: 4px;
+  .title {
+    color: black;
+    font-size: 12px;
+    margin: 0;
   }
-}
 
-.input_regular {
-  @extend .input_large;
-
-  font-size: 16px;
-  border-radius: 4px;
-  padding: $paddingRegular;
-  width: calc(100% - ($paddingRegular * 2));
+  .input_large {
+    padding: $paddingLarge;
+    background-color: $componentBackground;
+    width: calc(100% - ($paddingLarge * 2));
+    border-radius: 12px;
+    font-size: 36px;
+    caret-color: $accent;
+    border: none;
+  
+    &:focus {
+      outline: 1px solid $accent;
+      outline-offset: 4px;
+    }
+  }
+  
+  .input_regular {
+    @extend .input_large;
+  
+    font-size: 16px;
+    border-radius: 4px;
+    padding: $paddingRegular;
+    width: calc(100% - ($paddingRegular * 2));
+  }
 }

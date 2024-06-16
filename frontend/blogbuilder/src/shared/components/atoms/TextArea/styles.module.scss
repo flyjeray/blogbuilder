@@ -1,18 +1,30 @@
-@import '@/shared/colors.module.scss';
+@import '@/shared/constants/colors.module.scss';
 
 $paddingRegular: 4px;
 
-.area {
-  font-size: 16px;
-  border-radius: 4px;
-  padding: $paddingRegular;
-  width: calc(100% - ($paddingRegular * 2));
-  border: none;
-  caret-color: $accent;
-  background-color: $componentBackground;
+.textarea_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
-  &:focus {
-    outline: 1px solid $accent;
-    outline-offset: 4px;
+  .title {
+    color: black;
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .area {
+    font-size: 16px;
+    border-radius: 4px;
+    padding: $paddingRegular;
+    width: calc(100% - ($paddingRegular * 2));
+    border: none;
+    caret-color: $accent;
+    background-color: $componentBackground;
+  
+    &:focus {
+      outline: 1px solid $accent;
+      outline-offset: 4px;
+    }
   }
 }

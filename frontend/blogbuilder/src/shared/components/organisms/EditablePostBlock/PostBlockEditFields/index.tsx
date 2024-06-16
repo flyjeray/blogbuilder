@@ -1,6 +1,6 @@
 import { PostBlockContent, PostBlockFieldContent } from "@/shared/models/Post";
 import TextInput from "@/shared/components/atoms/TextInput";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import TextArea from "@/shared/components/atoms/TextArea";
 
 type SingleFieldProps = {
@@ -13,7 +13,8 @@ const SingleFieldEditField = ({ field, onChange }: SingleFieldProps) => {
     case 'text':
       return (
         <TextArea
-          placeholder="Text"
+          title="Text"
+          placeholder="Enter your value here"
           defaultValue={field.value}
           onChange={e => onChange(e.currentTarget.value)}
           rows={5}
@@ -22,7 +23,8 @@ const SingleFieldEditField = ({ field, onChange }: SingleFieldProps) => {
     case 'img':
       return (
         <TextInput
-          placeholder="Image"
+          title="Image Link"
+          placeholder="Enter your value here"
           defaultValue={field.value}
           onChange={e => onChange(e.currentTarget.value)}
         />

@@ -1,6 +1,5 @@
-type PostBlockType = 'text' | 'r_img_text' | 'l_img_text' | 'secondary_title' | 'img';
-
-export type PostBlockFieldType = 'text' | 'img';
+import { PostBlockType } from "@/shared/constants/PostBlocks";
+import { PostBlockFieldType } from "@/shared/constants/PostBlockFields";
 
 export type PostBlockFieldContent = {
   id: string;
