@@ -1,5 +1,5 @@
 import { MockPost } from "@/mocks/MockPost";
-import PostBlockRenderer from "@/shared/components/PostBlock";
+import PostBlockRenderer from "@/shared/components/molecules/PostBlock";
 import styles from './styles.module.scss';
 
 type Props = {

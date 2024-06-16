@@ -6,6 +6,9 @@ import { MockPost } from '@/mocks/MockPost';
 import { FormEvent, useState } from 'react';
 import { PostBlockContent } from '@/shared/models/Post';
 import EditablePostBlock from '@/shared/components/organisms/EditablePostBlock';
+import AddBlockButton from '@/shared/components/atoms/AddBlockButton';
+import AddBlockPopup from '@/shared/components/molecules/AddBlockPopup';
+import { PostBlockType } from '@/shared/constants/PostBlocks';
 
 type Props = {
   params: {
@@ -16,9 +19,14 @@ type Props = {
 const AdminEditPostPage = ({ params }: Props) => {
   const [title, setTitle] = useState<string>(MockPost.title);
   const [blocks, setBlocks] = useState<PostBlockContent[]>(MockPost.blocks);
+  const [addPopupOpen, setAddPopupOpen] = useState(false);
 
   const handleChangeTitle = (e: FormEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
+  }
+
+  const handleAddBlock = (type: PostBlockType) => {
+    setAddPopupOpen(false);
   }
 
   const handleSave = (block: PostBlockContent) => {
@@ -44,6 +52,17 @@ const AdminEditPostPage = ({ params }: Props) => {
           onSave={handleSave}
         />
       ))}
+      {!addPopupOpen && (
+        <AddBlockButton 
+          onClick={() => setAddPopupOpen(true)}
+        />
+      )}
+      {addPopupOpen && (
+        <AddBlockPopup 
+          onSelect={handleAddBlock}
+          onClose={() => setAddPopupOpen(false)}
+        />
+      )}
     </main>
   )
 }

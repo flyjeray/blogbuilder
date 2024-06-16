@@ -5,6 +5,7 @@ import EditIcon from '@/assets/icons/edit.svg';
 import { HTMLProps, useState } from "react";
 import PostBlockEditFields from "./PostBlockEditFields";
 import Button from "@/shared/components/atoms/Button";
+import Popup from "../../atoms/Popup";
 
 type EditButtonProps = HTMLProps<HTMLButtonElement>;
 
@@ -22,7 +23,7 @@ type BlockEditDropdownProps = {
   onCancel: () => void;
 }
 
-const BlockEditDropdown = ({ block, onSave, onCancel }: BlockEditDropdownProps) => {
+const BlockEditPopup = ({ block, onSave, onCancel }: BlockEditDropdownProps) => {
   const [data, setData] = useState(block);
 
   const handleChange = (fields: PostBlockFieldContent[]) => {
@@ -33,14 +34,14 @@ const BlockEditDropdown = ({ block, onSave, onCancel }: BlockEditDropdownProps) 
   }
 
   return (
-    <div className={styles.edit_dropdown}>
+    <Popup position={{ top: '8px', left: '8px' }}>
       <PostBlockEditFields
         block={data}
         onChange={handleChange}
       />
       <Button onClick={() => onSave(data)}>Save</Button>
       <Button onClick={onCancel}>Cancel</Button>
-    </div>
+    </Popup>
   )
 }
 
@@ -73,7 +74,7 @@ const EditablePostBlock = ({ data, onSave }: Props) => {
         />
       )}
       {open && (
-        <BlockEditDropdown
+        <BlockEditPopup
           onSave={handleSave}
           onCancel={handleClose}
           block={data}
