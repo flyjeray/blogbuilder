@@ -1,18 +1,26 @@
 .container {
-  display: flex;
-  flex-direction: column;
-
   position: relative;
-  
-  gap: 64px;
 
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 16px;
+  .content {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 64px;
+  
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
 
   .blocks {
     display: flex;
     flex-direction: column;
     gap: 36px;
+  }
+  
+  .save_btn_wrapper {
+    position: fixed;
+    top: 32px;
+    left: 32px;
   }
 }

@@ -9,6 +9,7 @@ import EditablePostBlock from '@/shared/components/organisms/EditablePostBlock';
 import AddBlockButton from '@/shared/components/atoms/AddBlockButton';
 import AddBlockPopup from '@/shared/components/molecules/AddBlockPopup';
 import { PostBlockType } from '@/shared/constants/PostBlocks';
+import Button from '@/shared/components/atoms/Button';
 
 type Props = {
   params: {
@@ -29,7 +30,7 @@ const AdminEditPostPage = ({ params }: Props) => {
     setAddPopupOpen(false);
   }
 
-  const handleSave = (id: string, fields: PostBlockFieldContent[]) => {
+  const handleSaveBlock = (id: string, fields: PostBlockFieldContent[]) => {
     const copy = [...blocks];
     const i = copy.findIndex(b => b.id == id);
     if (i !== -1) {
@@ -38,31 +39,45 @@ const AdminEditPostPage = ({ params }: Props) => {
     setBlocks(copy);
   }
 
+  const handleSavePost = () => {
+    console.log('Save Post');
+  }
+
   return (
     <main className={styles.container}>
-      <TextInput
-        onChange={handleChangeTitle}
-        placeholder="Post Title"
-        value={title}
-      />
-      {blocks.map(block => (
-        <EditablePostBlock
-          key={block.id}
-          block={block}
-          onBlockSave={handleSave}
+      <div className={styles.content}>
+        <TextInput
+          onChange={handleChangeTitle}
+          placeholder="Post Title"
+          value={title}
         />
-      ))}
-      {!addPopupOpen && (
-        <AddBlockButton 
-          onClick={() => setAddPopupOpen(true)}
-        />
-      )}
-      {addPopupOpen && (
-        <AddBlockPopup 
-          onSelect={handleAddBlock}
-          onClose={() => setAddPopupOpen(false)}
-        />
-      )}
+        {blocks.map(block => (
+          <EditablePostBlock
+            key={block.id}
+            block={block}
+            onBlockSave={handleSaveBlock}
+          />
+        ))}
+        {!addPopupOpen && (
+          <AddBlockButton 
+            onClick={() => setAddPopupOpen(true)}
+          />
+        )}
+        {addPopupOpen && (
+          <AddBlockPopup 
+            onSelect={handleAddBlock}
+            onClose={() => setAddPopupOpen(false)}
+          />
+        )}
+      </div>
+      <div className={styles.save_btn_wrapper}>
+        <Button 
+          variant="large"
+          onClick={handleSavePost}
+        >
+          Save
+        </Button>
+      </div>
     </main>
   )
 }
