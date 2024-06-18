@@ -4,7 +4,7 @@ import TextInput from '@/shared/components/atoms/TextInput';
 import styles from './styles.module.scss';
 import { MockPost } from '@/mocks/MockPost';
 import { FormEvent, useState } from 'react';
-import { PostBlockContent } from '@/shared/models/Post';
+import { PostBlockContent, PostBlockFieldContent } from '@/shared/models/Post';
 import EditablePostBlock from '@/shared/components/organisms/EditablePostBlock';
 import AddBlockButton from '@/shared/components/atoms/AddBlockButton';
 import AddBlockPopup from '@/shared/components/molecules/AddBlockPopup';
@@ -29,11 +29,11 @@ const AdminEditPostPage = ({ params }: Props) => {
     setAddPopupOpen(false);
   }
 
-  const handleSave = (block: PostBlockContent) => {
+  const handleSave = (id: string, fields: PostBlockFieldContent[]) => {
     const copy = [...blocks];
-    const i = copy.findIndex(b => b.id == block.id);
+    const i = copy.findIndex(b => b.id == id);
     if (i !== -1) {
-      copy[i] = block;
+      copy[i].fields = fields;
     }
     setBlocks(copy);
   }
@@ -48,8 +48,8 @@ const AdminEditPostPage = ({ params }: Props) => {
       {blocks.map(block => (
         <EditablePostBlock
           key={block.id}
-          data={block}
-          onSave={handleSave}
+          block={block}
+          onBlockSave={handleSave}
         />
       ))}
       {!addPopupOpen && (

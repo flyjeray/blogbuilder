@@ -1,4 +1,5 @@
-import { PostBlockContent, PostBlockFieldContent, PostBlockFieldType } from "@/shared/models/Post";
+import { PostBlockContent, PostBlockFieldContent } from "@/shared/models/Post";
+import { PostBlockFieldType } from "@/shared/constants/PostBlockFields";
 
 export const findField = (
   block: PostBlockContent,
