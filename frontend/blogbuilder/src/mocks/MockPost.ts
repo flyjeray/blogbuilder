@@ -1,3 +1,4 @@
+import { PostBlockType } from "@/shared/constants/PostBlocks";
 import { PostBlockContent, PostContent } from "@/shared/models/Post";
 
 const LoremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
@@ -74,17 +75,28 @@ const MockImageBlock = (id: string): PostBlockContent => ({
   ]
 })
 
+export const GetMockBlock = (type: PostBlockType, id: string) => {
+  switch (type) {
+    case 'text':
+      return MockTextBlock(id);
+    case 'img':
+      return MockImageBlock(id);
+    case 'secondary_title':
+      return MockSecondaryTitleBlock(id);
+    case 'l_img_text':
+      return MockLImgTextBlock(id);
+    case 'r_img_text':
+      return MockRImgTextBlock(id);
+  }
+} 
+
 export const MockPost: PostContent = {
   title: 'Mock Post',
   blocks: [
-    MockTextBlock('block1'),
-    MockSecondaryTitleBlock('sectitle1'),
-    MockImageBlock('img1'),
-    MockTextBlock('block3'),
-    MockRImgTextBlock('block4'),
-    MockSecondaryTitleBlock('sectitle2'),
-    MockImageBlock('img2'),
-    MockTextBlock('block6'),
-    MockLImgTextBlock('block7')
+    GetMockBlock('text', 'block1'),
+    GetMockBlock('secondary_title', 'block4'),
+    GetMockBlock('img', 'block5'),
+    GetMockBlock('l_img_text', 'block2'),
+    GetMockBlock('r_img_text', 'block3')
   ]
 }

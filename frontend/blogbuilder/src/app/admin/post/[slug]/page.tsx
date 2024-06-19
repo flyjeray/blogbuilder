@@ -2,7 +2,7 @@
 
 import TextInput from '@/shared/components/atoms/TextInput';
 import styles from './styles.module.scss';
-import { MockPost } from '@/mocks/MockPost';
+import { GetMockBlock, MockPost } from '@/mocks/MockPost';
 import { FormEvent, useState } from 'react';
 import { PostBlockContent, PostBlockFieldContent } from '@/shared/models/Post';
 import EditablePostBlock from '@/shared/components/organisms/EditablePostBlock';
@@ -27,6 +27,7 @@ const AdminEditPostPage = ({ params }: Props) => {
   }
 
   const handleAddBlock = (type: PostBlockType) => {
+    setBlocks(prev => [...prev, GetMockBlock(type, new Date().getTime().toString())])
     setAddPopupOpen(false);
   }
 
