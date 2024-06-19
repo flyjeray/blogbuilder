@@ -40,6 +40,10 @@ const AdminEditPostPage = ({ params }: Props) => {
     setBlocks(copy);
   }
 
+  const handleDeleteBlock = (id: string) => {
+    setBlocks(prev => prev.filter(b => b.id !== id))
+  }
+
   const handleSavePost = () => {
     console.log('Save Post');
   }
@@ -57,6 +61,7 @@ const AdminEditPostPage = ({ params }: Props) => {
             key={block.id}
             block={block}
             onBlockSave={handleSaveBlock}
+            onBlockDelete={() => handleDeleteBlock(block.id)}
           />
         ))}
         {!addPopupOpen && (

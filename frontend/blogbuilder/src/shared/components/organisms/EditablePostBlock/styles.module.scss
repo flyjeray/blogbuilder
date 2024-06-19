@@ -4,13 +4,17 @@
   position: relative;
 
   &:hover {
-    .edit_button {
+    .on_hover_block {
       opacity: 1;
     }
   }
 
-  .edit_button {
+  .on_hover_block {
     position: absolute;
+
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
   
     top: 8px;
     left: 8px;
@@ -18,18 +22,19 @@
     opacity: 0;
     transition: opacity 0.15s;
 
-    background-color: white;
-    padding: 4px;
-    border-radius: 4px;
-    border: none;
-
-    img {
-      width: 24px;
-      height: 24px;
-    }
-
-    &:hover {
-      cursor: pointer;
+    button {
+      padding: 4px;
+      border-radius: 4px;
+      border: none;
+  
+      img {
+        width: 24px;
+        height: 24px;
+      }
+  
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
