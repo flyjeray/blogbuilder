@@ -11,6 +11,7 @@ export type PostBlockContent = {
   id: string;
   type: PostBlockType;
   fields: PostBlockFieldContent[];
+  order: number;
 }
 
 export type PostContent = {

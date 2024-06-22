@@ -3,6 +3,7 @@ import PostBlockRenderer from "@/shared/components/molecules/PostBlock";
 import styles from './styles.module.scss';
 import EditIcon from '@/assets/icons/edit.svg';
 import DeleteIcon from '@/assets/icons/trash.svg';
+import ArrowUpIcon from '@/assets/icons/arrow-up.svg';
 import { useState } from "react";
 import PostBlockEditPopup from "@/shared/components/organisms/PostBlockEditPopup";
 
@@ -10,9 +11,19 @@ type Props = {
   block: PostBlockContent;
   onBlockSave: (id: string, fields: PostBlockFieldContent[]) => void;
   onBlockDelete: () => void;
+  onBlockMove: (directionUp: boolean) => void;
+  isFirst: boolean;
+  isLast: boolean;
 }
 
-const EditablePostBlock = ({ block, onBlockSave, onBlockDelete }: Props) => {
+const EditablePostBlock = ({ 
+  block, 
+  onBlockSave, 
+  onBlockDelete, 
+  onBlockMove,
+  isFirst,
+  isLast
+}: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleSave = (fields: PostBlockFieldContent[]) => {
@@ -26,22 +37,36 @@ const EditablePostBlock = ({ block, onBlockSave, onBlockDelete }: Props) => {
     }
   }
 
+  const handleMoveUp = () => {
+    if (!isFirst) {
+      onBlockMove(true);
+    }
+  }
+
+  const handleMoveDown = () => {
+    if (!isLast) {
+      onBlockMove(false);
+    }
+  }
+
   return (
     <div className={styles.container}>
       {!open && (
         <div className={styles.on_hover_block}>
-          <button 
-            onClick={() => setOpen(true)} 
-            type="button"
-            style={{ backgroundColor: 'white' }}
-          >
+          <button onClick={() => setOpen(true)} type="button">
             <img src={EditIcon.src} alt="Edit Icon" />
           </button>
-          <button 
-            onClick={handleDelete} 
-            type="button" 
-            style={{ backgroundColor: 'red' }}
-          >
+          {!isFirst && (
+            <button onClick={handleMoveUp} type="button">
+              <img src={ArrowUpIcon.src} alt="Arrow Up Icon" />
+            </button>
+          )}
+          {!isLast && (
+            <button onClick={handleMoveDown} type="button">
+              <img src={ArrowUpIcon.src} alt="Arrow Down Icon" style={{ transform: 'rotate(180deg)' }} />
+            </button>
+          )}
+          <button onClick={handleDelete} type="button" style={{ backgroundColor: 'red' }}>
             <img src={DeleteIcon.src} alt="Delete Icon" />
           </button>
         </div>

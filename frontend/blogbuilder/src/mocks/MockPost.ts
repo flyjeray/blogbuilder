@@ -5,9 +5,10 @@ const LoremIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
 
 const RandomPhoto = (x: number, y: number) => `https://picsum.photos/${x}/${y}`
 
-const MockTextBlock = (id: string): PostBlockContent => ({
+const MockTextBlock = (id: string, order: number): PostBlockContent => ({
   id,
   type: 'text',
+  order,
   fields: [
     {
       id: 't1',
@@ -17,9 +18,10 @@ const MockTextBlock = (id: string): PostBlockContent => ({
   ]
 })
 
-const MockRImgTextBlock = (id: string): PostBlockContent => ({
+const MockRImgTextBlock = (id: string, order: number): PostBlockContent => ({
   id,
   type: 'r_img_text',
+  order,
   fields: [
     {
       id: 't1',
@@ -34,9 +36,10 @@ const MockRImgTextBlock = (id: string): PostBlockContent => ({
   ]
 })
 
-const MockLImgTextBlock = (id: string): PostBlockContent => ({
+const MockLImgTextBlock = (id: string, order: number): PostBlockContent => ({
   id,
   type: 'l_img_text',
+  order,
   fields: [
     {
       id: 't1',
@@ -51,9 +54,10 @@ const MockLImgTextBlock = (id: string): PostBlockContent => ({
   ]
 })
 
-const MockSecondaryTitleBlock = (id: string): PostBlockContent => ({
+const MockSecondaryTitleBlock = (id: string, order: number): PostBlockContent => ({
   id,
   type: 'secondary_title',
+  order,
   fields: [
     {
       id: 't1',
@@ -63,9 +67,10 @@ const MockSecondaryTitleBlock = (id: string): PostBlockContent => ({
   ]
 })
 
-const MockImageBlock = (id: string): PostBlockContent => ({
+const MockImageBlock = (id: string, order: number): PostBlockContent => ({
   id,
   type: 'img',
+  order,
   fields: [
     {
       id: 'i1',
@@ -75,28 +80,28 @@ const MockImageBlock = (id: string): PostBlockContent => ({
   ]
 })
 
-export const GetMockBlock = (type: PostBlockType, id: string) => {
+export const GetMockBlock = (type: PostBlockType, id: string, order: number) => {
   switch (type) {
     case 'text':
-      return MockTextBlock(id);
+      return MockTextBlock(id, order);
     case 'img':
-      return MockImageBlock(id);
+      return MockImageBlock(id, order);
     case 'secondary_title':
-      return MockSecondaryTitleBlock(id);
+      return MockSecondaryTitleBlock(id, order);
     case 'l_img_text':
-      return MockLImgTextBlock(id);
+      return MockLImgTextBlock(id, order);
     case 'r_img_text':
-      return MockRImgTextBlock(id);
+      return MockRImgTextBlock(id, order);
   }
 } 
 
 export const MockPost: PostContent = {
   title: 'Mock Post',
   blocks: [
-    GetMockBlock('text', 'block1'),
-    GetMockBlock('secondary_title', 'block4'),
-    GetMockBlock('img', 'block5'),
-    GetMockBlock('l_img_text', 'block2'),
-    GetMockBlock('r_img_text', 'block3')
+    GetMockBlock('text', 'block1', 1),
+    GetMockBlock('secondary_title', 'block4', 2),
+    GetMockBlock('img', 'block5', 3),
+    GetMockBlock('l_img_text', 'block2', 4),
+    GetMockBlock('r_img_text', 'block3', 5)
   ]
 }

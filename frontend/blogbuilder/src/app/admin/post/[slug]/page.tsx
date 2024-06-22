@@ -3,7 +3,7 @@
 import TextInput from '@/shared/components/atoms/TextInput';
 import styles from './styles.module.scss';
 import { GetMockBlock, MockPost } from '@/mocks/MockPost';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useMemo, useState } from 'react';
 import { PostBlockContent, PostBlockFieldContent } from '@/shared/models/Post';
 import EditablePostBlock from '@/shared/components/organisms/EditablePostBlock';
 import AddBlockButton from '@/shared/components/atoms/AddBlockButton';
@@ -22,12 +22,23 @@ const AdminEditPostPage = ({ params }: Props) => {
   const [blocks, setBlocks] = useState<PostBlockContent[]>(MockPost.blocks);
   const [addPopupOpen, setAddPopupOpen] = useState(false);
 
+  const sortedBlocks = useMemo(() => {
+    return blocks.sort((x, y) => x.order - y.order);
+  }, [blocks]);
+
   const handleChangeTitle = (e: FormEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   }
 
   const handleAddBlock = (type: PostBlockType) => {
-    setBlocks(prev => [...prev, GetMockBlock(type, new Date().getTime().toString())])
+    setBlocks(prev => [
+      ...prev, 
+      GetMockBlock(
+        type, 
+        new Date().getTime().toString(), 
+        sortedBlocks[sortedBlocks.length - 1].order + 1
+      )
+    ]);
     setAddPopupOpen(false);
   }
 
@@ -48,6 +59,24 @@ const AdminEditPostPage = ({ params }: Props) => {
     console.log('Save Post');
   }
 
+  const handleMoveBlock = (id: string, directionUp: boolean) => {
+    const blockIndex = blocks.findIndex(block => block.id == id);
+    const blockIndexAtSorted = sortedBlocks.findIndex(block => block.id == id);
+
+    if (blockIndex !== -1 && blockIndexAtSorted !== -1) {
+      const swapBlockIndex = blocks.findIndex(block => block.id == sortedBlocks[blockIndexAtSorted + (directionUp ? -1 : 1)].id)
+
+      if (swapBlockIndex !== -1) {
+        const swapBlock = blocks[swapBlockIndex];
+
+        const updatedBlocks = [...blocks];
+        [updatedBlocks[blockIndex].order, updatedBlocks[swapBlockIndex].order] = [swapBlock.order, blocks[blockIndex].order];
+  
+        setBlocks(updatedBlocks);
+      }
+    }
+  } 
+
   return (
     <main className={styles.container}>
       <div className={styles.content}>
@@ -56,12 +85,15 @@ const AdminEditPostPage = ({ params }: Props) => {
           placeholder="Post Title"
           value={title}
         />
-        {blocks.map(block => (
+        {sortedBlocks.map(block => (
           <EditablePostBlock
             key={block.id}
             block={block}
             onBlockSave={handleSaveBlock}
             onBlockDelete={() => handleDeleteBlock(block.id)}
+            onBlockMove={directionUp => handleMoveBlock(block.id, directionUp)}
+            isFirst={sortedBlocks[0].id == block.id}
+            isLast={sortedBlocks[sortedBlocks.length - 1].id == block.id}
           />
         ))}
         {!addPopupOpen && (
