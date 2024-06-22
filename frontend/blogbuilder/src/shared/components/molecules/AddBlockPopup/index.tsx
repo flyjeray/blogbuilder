@@ -1,22 +1,26 @@
 import { BlockLabels, PostBlockType } from "@/shared/constants/PostBlocks";
 import Popup from "@/shared/components/atoms/Popup";
 import Button from "@/shared/components/atoms/Button";
+import styles from './styles.module.scss';
 
 type Props = {
   onSelect: (type: PostBlockType) => void;
   onClose: () => void;
+  openUpwards: boolean;
 }
 
-const AddBlockPopup = ({ onSelect, onClose }: Props) => {
+const AddBlockPopup = ({ onSelect, onClose, openUpwards }: Props) => {
   return (
-    <Popup sx={{ left: 'calc(50% - 200px)', bottom: '20px', top: 'auto', width: '400px' }}>
+    <Popup extraClass={styles[`popup_extra_styles${openUpwards ? `_upwards` : ''}`]}>
       {/* TODO: fix ts2739 that appears when not using Fragment */}
       <>
-        {Object.entries(BlockLabels).map(block => (
-          <Button onClick={() => onSelect(block[0] as PostBlockType)}>
-            {block[1]}
-          </Button>
-        ))}
+        <div className={styles.options}>
+          {Object.entries(BlockLabels).map(block => (
+            <Button onClick={() => onSelect(block[0] as PostBlockType)}>
+              {block[1]}
+            </Button>
+          ))}
+        </div>
         <Button onClick={onClose} style={{ marginTop: '20px' }}>
           Close
         </Button>

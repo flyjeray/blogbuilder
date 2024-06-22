@@ -96,15 +96,15 @@ const AdminEditPostPage = ({ params }: Props) => {
             isLast={sortedBlocks[sortedBlocks.length - 1].id == block.id}
           />
         ))}
-        {!addPopupOpen && (
-          <AddBlockButton 
-            onClick={() => setAddPopupOpen(true)}
-          />
-        )}
+        <AddBlockButton 
+          onClick={() => setAddPopupOpen(!addPopupOpen)}
+          isOpened={addPopupOpen}
+        />
         {addPopupOpen && (
           <AddBlockPopup 
             onSelect={handleAddBlock}
             onClose={() => setAddPopupOpen(false)}
+            openUpwards={blocks.length > 3}
           />
         )}
       </div>

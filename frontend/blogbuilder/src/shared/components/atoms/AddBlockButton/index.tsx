@@ -2,12 +2,13 @@ import styles from './styles.module.scss';
 
 type Props = {
   onClick: () => void;
+  isOpened: boolean;
 }
 
-const AddBlockButton = ({ onClick }: Props) => {
+const AddBlockButton = ({ onClick, isOpened }: Props) => {
   return (
     <button className={styles.wrapper} onClick={onClick}>
-      <p className={styles.inner}>+</p>
+      <p className={`${styles.inner} ${isOpened && `${styles.rotated}`}`}>+</p>
     </button>
   )
 }

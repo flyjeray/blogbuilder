@@ -1,10 +1,12 @@
+$popupPadding: 16px;
+
 .popup {
   position: absolute;
 
   top: 8px;
   left: 8px;
 
-  padding: 16px;
+  padding: $popupPadding;
   width: 200px;
 
   background-color: white;

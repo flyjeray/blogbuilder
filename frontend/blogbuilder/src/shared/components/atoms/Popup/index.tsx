@@ -3,13 +3,14 @@ import styles from './styles.module.scss';
 
 type Props = {
   children: JSX.Element[] | JSX.Element;
-  sx: CSSProperties;
+  sx?: CSSProperties;
+  extraClass?: string;
 }
 
-const Popup = ({ children, sx }: Props) => {
+const Popup = ({ children, sx, extraClass }: Props) => {
   return (
     <div 
-      className={styles.popup}
+      className={[styles.popup, extraClass].join(" ")}
       style={sx}
     >
       {children}

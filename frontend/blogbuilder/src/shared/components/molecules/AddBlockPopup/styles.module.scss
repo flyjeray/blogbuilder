@@ -1,0 +1,25 @@
+@import '@/shared/components/atoms/Popup/styles.module.scss';
+
+$width: 400px;
+
+.popup_extra_styles {
+  width: $width;
+  left: 50%;
+  bottom: 0;
+  top: auto;
+  transform: translate(-50%, 120%);
+}
+
+.popup_extra_styles_upwards {
+  @extend .popup_extra_styles;
+  bottom: 50px;
+  transform: translate(-50%, 0);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 120px;
+  overflow-y: scroll;
+}
