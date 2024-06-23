@@ -5,14 +5,15 @@ import EyeIcon from '@/assets/icons/eye.svg';
 
 type Props = {
   post: PostPreviewDetails;
-  adminActions: boolean;
+  adminActionsEnabled: boolean;
+  onDelete?: () => void;
 }
 
-const PostPreviewCard = ({ post, adminActions }: Props) => {
+const PostPreviewCard = ({ post, adminActionsEnabled, onDelete }: Props) => {
   return (
     <div className={styles.post_entry}>
       <p>{new Date(post.createdAt).toUTCString()}</p>
-      {adminActions ? (
+      {adminActionsEnabled ? (
         <p className={styles.title}>{post.title}</p>
       ) : (
         <Link className={styles.title} href={`post/${post.id}`}>{post.title}</Link>
@@ -21,10 +22,11 @@ const PostPreviewCard = ({ post, adminActions }: Props) => {
         <img src={EyeIcon.src} style={{ color: 'white' }} />
         <p>{post.views}</p>
       </div>
-      {adminActions && (
+      {adminActionsEnabled && (
         <div className={styles.row}>
           <Link href={`/post/${post.id}`}>View</Link>
           <Link href={`/admin/post/${post.id}`}>Edit</Link>
+          <p className={styles.delete} onClick={onDelete}>Delete</p>
         </div>
       )}
     </div>

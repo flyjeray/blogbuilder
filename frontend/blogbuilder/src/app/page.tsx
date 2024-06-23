@@ -8,14 +8,14 @@ const getPosts = async (): Promise<PostPreviewDetails[]> => MockPostsPreviewDeta
 
 const Home = async () => {
   const posts = await getPosts();
-  
+
   return (
     <main className={styles.container}>
       <div className={styles.list_container}>
         {posts.map(post => (
           <PostPreviewCard
             post={post} 
-            adminActions={false}
+            adminActionsEnabled={false}
           />
         ))}
       </div>
