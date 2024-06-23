@@ -75,7 +75,33 @@ const AdminEditPostPage = ({ params }: Props) => {
         setBlocks(updatedBlocks);
       }
     }
-  } 
+  }
+
+  const handleCopyBlock = (id: string) => {
+    const originalIndex = blocks.findIndex(block => block.id == id);
+
+    if (originalIndex === -1) return;
+
+    const copiedBlock: PostBlockContent = {
+      ...blocks[originalIndex],
+      id: new Date().getTime().toString(),
+      order: blocks[originalIndex].order + 1,
+    }
+
+    const unshifted = blocks.slice(0, originalIndex + 1);
+    const shifted = blocks.slice(originalIndex + 1, blocks.length).map(block => {
+      return {
+        ...block,
+        order: block.order + 1,
+      }
+    });
+
+    setBlocks([
+      ...unshifted, 
+      copiedBlock, 
+      ...shifted
+    ]);
+  }
 
   return (
     <main className={styles.container}>
@@ -92,6 +118,7 @@ const AdminEditPostPage = ({ params }: Props) => {
             onBlockSave={handleSaveBlock}
             onBlockDelete={() => handleDeleteBlock(block.id)}
             onBlockMove={directionUp => handleMoveBlock(block.id, directionUp)}
+            onCopy={() => handleCopyBlock(block.id)}
             isFirst={sortedBlocks[0].id == block.id}
             isLast={sortedBlocks[sortedBlocks.length - 1].id == block.id}
           />

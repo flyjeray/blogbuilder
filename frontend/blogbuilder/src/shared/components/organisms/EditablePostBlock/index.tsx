@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import EditIcon from '@/assets/icons/edit.svg';
 import DeleteIcon from '@/assets/icons/trash.svg';
 import ArrowUpIcon from '@/assets/icons/arrow-up.svg';
+import CopyIcon from '@/assets/icons/copy.svg';
 import { useState } from "react";
 import PostBlockEditPopup from "@/shared/components/organisms/PostBlockEditPopup";
 
@@ -12,6 +13,7 @@ type Props = {
   onBlockSave: (id: string, fields: PostBlockFieldContent[]) => void;
   onBlockDelete: () => void;
   onBlockMove: (directionUp: boolean) => void;
+  onCopy: () => void;
   isFirst: boolean;
   isLast: boolean;
 }
@@ -21,6 +23,7 @@ const EditablePostBlock = ({
   onBlockSave, 
   onBlockDelete, 
   onBlockMove,
+  onCopy,
   isFirst,
   isLast
 }: Props) => {
@@ -49,6 +52,10 @@ const EditablePostBlock = ({
     }
   }
 
+  const handleCopy = () => {
+    onCopy();
+  }
+
   return (
     <div className={styles.container}>
       {!open && (
@@ -66,6 +73,9 @@ const EditablePostBlock = ({
               <img src={ArrowUpIcon.src} alt="Arrow Down Icon" style={{ transform: 'rotate(180deg)' }} />
             </button>
           )}
+          <button onClick={handleCopy} type="button">
+            <img src={CopyIcon.src} alt="Copy Icon" />
+          </button>
           <button onClick={handleDelete} type="button" style={{ backgroundColor: 'red' }}>
             <img src={DeleteIcon.src} alt="Delete Icon" />
           </button>
