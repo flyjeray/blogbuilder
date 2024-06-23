@@ -1,0 +1,35 @@
+@import '@/shared/constants/colors.module.scss';
+
+.post_entry {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border: 1px solid white;
+  border-radius: 8px;
+
+  a {
+    color: white;
+    transition: color 0.15s;
+
+    &:hover {
+      color: $accent;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .title {
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+}
